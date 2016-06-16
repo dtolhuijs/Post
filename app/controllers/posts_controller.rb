@@ -26,7 +26,7 @@ class PostsController < ApplicationController
     authorize! :read, @posts
 
     @likes = @user.likes.joins( :post ).order( "posts.created_at DESC" )
-    authorize! :read @likes
+    authorize! :read, @likes
 
  end
 
