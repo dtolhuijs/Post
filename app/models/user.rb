@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   has_many :posts
+  has_many :likes
   def handle
     self.email.split('@')[0]
   end
