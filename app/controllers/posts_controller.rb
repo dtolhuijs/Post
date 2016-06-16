@@ -11,6 +11,7 @@ class PostsController < ApplicationController
      post_params = params.require( :post ).permit( :content )
 
      @post = Post.new( content: post_params[:content] )
+     @post.user = current_user
 
      if @post.save
         redirect_to posts_path
@@ -18,4 +19,10 @@ class PostsController < ApplicationController
         render posts_path
      end
   end
+
+  def user
+    @user = User.find( params[:user_id] )
+
+    @posts = Post.where( user: @user ).order( created_at: :desc )
+ end
 end
