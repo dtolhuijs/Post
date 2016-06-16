@@ -3,7 +3,6 @@ class PostsController < ApplicationController
 
   def index
     @posts = @posts.order( created_at: :desc )
-    authorize! :read, @posts
   end
 
   def show
@@ -11,7 +10,6 @@ class PostsController < ApplicationController
   end
 
   def create
-
      if @post.save
         redirect_to posts_path
      else
@@ -31,8 +29,8 @@ class PostsController < ApplicationController
 
  end
 
- private
-  def post_params
-    params.require( :post ).permit( :content )
-end
+   private
+    def post_params
+      params.require( :post ).permit( :content )
+  end
 end
